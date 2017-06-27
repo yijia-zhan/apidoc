@@ -1,9 +1,62 @@
 FORMAT: 1A
 HOST: http://polls.apiblueprint.org/
 
-# Test1
+# Compliance Maps
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Compliance Maps APIs allow organization to manage their Authoratative Standards and Regulations and map the standard/regulation requirements to their internal controls.
+
+This set of APIs is organized around [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). It has predictable, resource-oriented URLs, and uses HTTP response code to indicate API errors. [JSON](http://www.json.org) is returned in the [JSON API]("http://jsonapi.org") format to allow caching efficiently and reducing unnecessary server roundtrips.
+
+## Authentication
+Compliance Map APIs currently authenticate with Session Cookie. To make a succesful request, you need to obtain a cookie from a valid Projects session and attach it to the reqeust.
+
+## Errors
+Compliance Maps APIs use conventional HTTP response codes to indicate the success or failure of an API request. In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, an invalid Resource ID, etc.), and codes in the 5xx range indicate an error with Projects' server (these are rare).
+
+To understand why a card is declined, refer to the following table of codes descriptions:
+
+| Codes              | Description                                                                                           |
+| :-------------:    | :-------------                                                                                        |
+| 200                | OK - Everything worked as expected.                                                                   |
+| 400                | Bad - Request The request was unacceptable, often due to missing a required parameter.                |
+| 401                | Unauthorized - No valid API key provided.                                                             |
+| 402                | Request Failed - The parameters were valid but the request failed.                                    |
+| 404                | Not Found - The requested resource doesn't exist.                                                     |
+| 409                | Conflict - The request conflicts with another request (perhaps due to using the same idempotent key). |
+| 500, 502, 503, 504 | Server Errors - Something went wrong on Projects' end.                                                |
+|                    |                                                                                                       |
+
+## Expanding Resources
+Many resources contain the ID of a related resource in their response properties. For example, a `Requirement` may have an associated `Standard` ID. Those resources can be expanded inline with the `expand` request parameter. Resources that can be expanded are noted in this documentation. This parameter is available on all API requests, and applies to the response of that request only. You can expand multiple objects at once by identifying multiple items in the expand array.
+
+## Field selections
+Generally, when requested for a resource, the server will respond with the complete set of fields of that resource (assuming the resource is accessible by the requester). But in some situations you might only want one piece of the full information. You can use the `fields` param to instruct the server to respond only the fields you are interested in. For example, `/standards?fields[]=name&fields[]=subscription_type` will all the accessible standards, but only with the `name` and `subsription_type` fields.
+
+It's suggested to be conscience and only request for the data you need. This reduces server load ands speed up the request-response cycle.
+
+## Querying
+Compliance Map APIs support querying with the `filter` param.
+
+### by the fields of a Resource
+
+`/standards?filter[subscription_type]=internal`
+
+### by the fields of an associated Resource
+`/requirements?filter[standard][subscription_type]=internal&filter[standard][name]=fedramp`
+
+### by free form text
+`/requirements?filter[query]=must lock your computer`
+
+## Sorting
+
+## Pagination
+pag pag pag paginate
+
+## Versioninig
+version what?
+
+
+
 
 ## Questions Collection [/questions]
 

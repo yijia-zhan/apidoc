@@ -22,7 +22,7 @@ To understand why a card is declined, refer to the following table of codes desc
 | 401                | Unauthorized - No valid API key provided.                                                             |
 | 402                | Request Failed - The parameters were valid but the request failed.                                    |
 | 404                | Not Found - The requested resource doesn't exist.                                                     |
-| 409                | Conflict - The request conflicts with another request (perhaps due to using the same idempotent key). |
+| 409                | Conflict - The request conflicts with another request.                                                |
 | 500, 502, 503, 504 | Server Errors - Something went wrong on Projects' end.                                                |
 |                    |                                                                                                       |
 
@@ -55,36 +55,63 @@ pag pag pag paginate
 ## Versioninig
 version what?
 
+## Standards [/standards]
 
-
-
-## Questions Collection [/questions]
-
-### List All Questions [GET]
+### List All Standards/Regulations [GET]
 
 + Response 200 (application/json)
-
-        [
+{
+  "data": [
+    {
+      "id": "202",
+      "type": "compliance_standards",
+      "attributes": {
+        "name": "COSO® Internal Control Framework 2013",
+        "description": "COSO® Internal Control Framework 2013 is an integrated framework that enables organizations to effectively and efficiently develop systems of internal control. Areas covered by COSO® Internal Control Framework 2013 include adapting to changing business and operating environments, mitigating risks to acceptable levels, and supporting sound decision-making and governance of the organization.<br/><br/>This product includes COSO&#39;s 2013 Internal Control - Integrated Framework, used by permission of the Committee of Sponsoring Organizations of the Treadway Commission (COSO). &copy;2013, Committee of Sponsoring Organizations of the Treadway Commission. All rights reserved.<br/>COSO is a registered trademark of the Committee of Sponsoring Organizations of the Treadway Commission (COSO).",
+        "requirements_count": 109,
+        "in_scope_requirements_count": 109,
+        "covered": false,
+        "coverage": 0,
+        "available_scopes": [],
+        "applicable_scopes": [],
+        "source": "Committee of Sponsoring Organizations of the Treadway Commission (COSO®)",
+        "updated_at": "2017-04-21T19:15:23Z",
+        "created_at": "2017-04-21T19:15:23Z",
+        "locked": true,
+        "external_id": "CAT06",
+        "premium": false,
+        "agreed_to_disclaimer": null,
+        "applicable_requirements_count": 109,
+        "covered_requirements_count": 0,
+        "findings_count": null,
+        "created_by": "ACL Content Library",
+        "assurance": null
+      },
+      "relationships": {
+        "requirements": {
+          "data": [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
+              "id": "25689",
+              "type": "compliance_requirements"
+            },
+            {
+              "id": "25690",
+              "type": "compliance_requirements"
             }
-        ]
+          ],
+          "links": {
+            "related": "/compliance/standards/202/requirements"
+          }
+        }
+      },
+      "links": {
+        "self": "/compliance/standards/202"
+      }
+    }
+  ]
+}
+
+
 
 ### Create a New Question [POST]
 

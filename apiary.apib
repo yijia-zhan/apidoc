@@ -56,71 +56,128 @@ pag pag pag paginate
 version what?
 
 # Group Standards
-Resources related to standards in the API.
+Resources related to Standard or Regulation in the Compliance Map API.
 
 ## Standard/Regulation Collection [/standards]
-### List All Standards/Regulations [GET]
+
+### List All Standards [GET]
 View all your accessible Standards or Regulations.
 
 + Response 200 (application/json)
     + Attributes
-        - data
-            + id: 1 (number)
-            + type: compliance_standards (string)
-            + attributes (array[Standard])
+        - data (array)
+            + (object)
+                + id: 11 (number) - The unique identifier of the Standard/Regulation
+                + type: compliance_standards (string) - The type of a Standard/Regulation
+                + attributes: (Standard)
 
-### Create a Standard
+
+### Create a Standard [POST]
+You may create your own Standard using this action.
+
++ Parameters
+    + name: `abc` (string) - The name of the Standard
+
++ Request
+    + Body
+        ```js
+        {
+            "data": {
+                "type": "compliance_standards",
+                "attributes": {
+                    "name": "fedramp",
+                    "description": "fedramp description"
+                }
+            }
+        }
+        ```
+
++ Response 201
+    + Body
+
+        ```js
+        {
+          "data": {
+              "id": "202",
+              "type": "compliance_standards",
+              "attributes": {
+                "name": "fedramp",
+                "description": "fedramp description",
+                "requirements_count": 109,
+                "in_scope_requirements_count": 109,
+                "covered": false,
+                "coverage": 0,
+                "available_scopes": [],
+                "applicable_scopes": [],
+                "source": "Committee of Sponsoring Organizations of the Treadway Commission (COSO®)",
+                "updated_at": "2017-04-21T19:15:23Z",
+                "created_at": "2017-04-21T19:15:23Z",
+                "locked": true,
+                "external_id": "CAT06",
+                "premium": false,
+                "agreed_to_disclaimer": null,
+                "applicable_requirements_count": 109,
+                "covered_requirements_count": 0,
+                "findings_count": null,
+                "created_by": "ACL Content Library",
+                "assurance": null
+              }
+          }
+        }
+        ```
+
 
 ## Standard/Regulation [/standards/{standard_id}]
 
-### Update a Standard Detail [PUT]
-+ Response 201 (application/json)
+### Update a Standard [PUT]
 
-### Create a New Question [POST]
++ Parameters
+    + standard_id: 1 (number) - The identifier of the Standard being updated
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ Request (application/json)
-
++ Request
+    ```js
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "data": {
+                "id": 101
+                "type": "compliance_standards",
+                "attributes": {
+                    "name": "fedramp updated"
+                }
+            }
         }
+    ```
 
 + Response 201 (application/json)
-
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+    ```js
+        {
+          "data": {
+              "id": "101",
+              "type": "compliance_standards",
+              "attributes": {
+                "name": "fedramp updated",
+                "description": "fedramp description",
+                "requirements_count": 109,
+                "in_scope_requirements_count": 109,
+                "covered": false,
+                "coverage": 0,
+                "available_scopes": [],
+                "applicable_scopes": [],
+                "source": "Committee of Sponsoring Organizations of the Treadway Commission (COSO®)",
+                "updated_at": "2017-04-21T19:15:23Z",
+                "created_at": "2017-04-21T19:15:23Z",
+                "locked": true,
+                "external_id": "CAT06",
+                "premium": false,
+                "agreed_to_disclaimer": null,
+                "applicable_requirements_count": 109,
+                "covered_requirements_count": 0,
+                "findings_count": null,
+                "created_by": "ACL Content Library",
+                "assurance": null
+              }
+          }
+        }
+    ```
 
 ## Data Structures
 
@@ -131,8 +188,8 @@ form of choices.
 + in_scope_requirements_count: 50 (number) - The number of in scope requirements
 + covered: false (boolean) - Whether this Standard/Regulation is covered
 + coverage: 10.0 (number) - The coverage score of the Standard/Regulation
-+ available_scopes: ["casino", "bank"] (array[string]) - The list of available scopes
-+ applicable_scoped: ["casino"] (array[string]) - The list of scopes applicable to this Standard/Regulation
++ available_scopes: casino, bank (array[string]) - The list of available scopes
++ applicable_scoped: casino (array[string]) - The list of scopes applicable to this Standard/Regulation
 + source: `Committee of Sponsoring Organizations of the Treadway Commission (COSO®)` (string) - The source of this Standard/Regulation
 + created_at: `2014-11-11T08:40:51.620Z` (required) - The timestamp at which the Standard/Regulation is created
 + updated_at: `2014-11-11T08:40:51.620Z` (required) - The timestamp at which the Standard/Regulation is last updated

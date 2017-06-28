@@ -111,10 +111,23 @@ form of choices.
 ## Data Structures
 
 ### Standard
-+ name: fedramp (required)
-+ created_at: `2014-11-11T08:40:51.620Z` (required)
-+ url: /questions/1 (required)
-- id: 1 (number, required) - The unique identifier for a product
-- name: A green door (string, required) - Name of the product
-- price: 12.50 (number, required)
-- tags: home, green (array[string])
++ name: COSO® Internal Control Framework 2013 (string, required) - Name of the Standard/Regulation
++ description: COSO® Internal Control Framework 2013 is an integrated framework that ... (string, optional) - Description of the Standard/Regulation
++ requirements_count: 99 (number) - The number of requirements under this Standard/Regulation
++ in_scope_requirements_count: 50 (number) - The number of in scope requirements
++ covered: false (boolean) - Whether this Standard/Regulation is covered
++ coverage: 10.0 (number) - The coverage score of the Standard/Regulation
++ available_scopes: ["casino", "bank"] (array[string]) - The list of available scopes
++ applicable_scoped: ["casino"] (array[string]) - The list of scopes applicable to this Standard/Regulation
++ source: `Committee of Sponsoring Organizations of the Treadway Commission (COSO®)` (string) - The source of this Standard/Regulation
++ created_at: `2014-11-11T08:40:51.620Z` (required) - The timestamp at which the Standard/Regulation is created
++ updated_at: `2014-11-11T08:40:51.620Z` (required) - The timestamp at which the Standard/Regulation is last updated
++ locked: true (boolean) - Whether this Standard/Regulation is locked
++ external_id: CAT06 (string) - The External ID (from Salesforce) of this Standard/Regulation
++ premium: true (boolean) - Whether this is a premium Standard/Regulation
++ agreed_to_disclaimer: true (boolean) - Whether this Standard/Regulation requires the user to agree on a disclaimer
++ applicable_requirements_count: 30 (number) - The number of available requirements
++ covered_requirements_count: 15 (number) - The number of covered requirements
++ finding_count: 99 (number) - The number of Findings of all the mapped controls of the Standard/Regulation
++ created_by: yijia (string) - The name of the user who created this Standard/Regulation
++ assurance: false (boolean) - Whether this Standard/Regulation is assured

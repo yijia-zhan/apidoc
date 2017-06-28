@@ -58,8 +58,14 @@ version what?
 ## Standards [/standards]
 
 ### List All Standards/Regulations [GET]
+abc
 + Response 200 (application/json)
-    + Attributes (array[Standard])
+    + Attributes
+        - data
+            + id: 1 (number)
+            + type: compliance_standards (string)
+            + attributes (array[Standard])
+
 
 
 ### Create a New Question [POST]
